@@ -1,7 +1,6 @@
-if not redstone.getInput("front") then
-  peripheral.call("top", "clear")
-  peripheral.call("top", "write", "Disk Copier is Off")
+while true do
+  if not redstone.getInput("front") then
+    peripheral.call("top", "clear")
+    peripheral.call("top", "write", "Disk Copier is Off")
+  end
 end
-
-module.update("diskCopier")
-module.require("diskCopeir")
