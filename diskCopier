@@ -33,7 +33,7 @@ while true do
   
   if not (masterPath and targetPath) then
     term.write("Not Ready")
-  elsif not on then
+  elsif not (on) then
     term.write("Ready")
   elsif not copied then
     local targetFiles = fs.list(targetPath)
