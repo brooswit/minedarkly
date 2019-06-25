@@ -12,7 +12,7 @@ while true do
   end
   
   if disk.isPresent("left") then
-    masterLabel = disk.getLabel("left")
+    masterLabel = disk.getLabel("left") or ""
     masterPath = disk.getMountPath("left")
     print("Master Copy: " .. masterLabel .. " (Present)")
   else
@@ -21,7 +21,7 @@ while true do
   end
   
   if disk.isPresent("right") then
-    targetLabel = disk.getLabel("right")
+    targetLabel = disk.getLabel("right") or ""
     targetPath = disk.getMountPath("right")
     print("Target Disk: " .. targetLabel .. " (Present)")
   else
@@ -35,6 +35,7 @@ while true do
     print("Ready")
   elseif not copied then
     print("Coping... Do not remove target disk...")
+--    disk.setLabel("right", masterLabel)
 --    local targetFiles = fs.list(targetPath)
 --    for _, targetFile in ipairs(targetFiles) do
 --      targetFilePath = targetPath .. "/" .. targetFile
