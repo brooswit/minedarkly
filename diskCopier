@@ -29,24 +29,24 @@ while true do
     copied = false
   end
   
-  if (not disk.isPresent("left")) and (not disk.getMountPath("right")) then
+  if (not disk.isPresent("left")) and (not disk.isPresent("right")) then
     print("Not Ready")
   elseif not redstone.getInput("front") then
     print("Ready")
   elseif not copied then
     print("Coping... Do not remove target disk...")
---    disk.setLabel("right", masterLabel)
---    local targetFiles = fs.list(targetPath)
---    for _, targetFile in ipairs(targetFiles) do
---      targetFilePath = targetPath .. "/" .. targetFile
---      fs.delete(targetFilePath)
---    end
---    local masterFiles = fs.list(masterPath)
---    for _, masterFile in ipairs(masterFiles) do
---      masterFilePath = masterPath .. "/" .. masterFile
---      targetFilePath = targetPath .. "/" .. masterFile
---      fs.copy(masterFilePath, targetFilePath)
---    end
+    disk.setLabel("right", masterLabel)
+    local targetFiles = fs.list(targetPath)
+    for _, targetFile in ipairs(targetFiles) do
+      targetFilePath = targetPath .. "/" .. targetFile
+      fs.delete(targetFilePath)
+    end
+    local masterFiles = fs.list(masterPath)
+    for _, masterFile in ipairs(masterFiles) do
+      masterFilePath = masterPath .. "/" .. masterFile
+      targetFilePath = targetPath .. "/" .. masterFile
+      fs.copy(masterFilePath, targetFilePath)
+    end
     copied = true
   else
     print("Copied! Remove target disk")
