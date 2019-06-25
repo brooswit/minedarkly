@@ -50,4 +50,5 @@ while true do
   else
     print("Copied! Remove target disk")
   end
+  sleep(0)
 end
