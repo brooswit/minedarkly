@@ -6,34 +6,35 @@ local copied = false
 while true do
   term.clear()
   if redstone.getInput("front") then
-    term.write("Disk Copier: On")
+    print("Disk Copier: On")
   else
-    term.write("Disk Copier: Off")
+    print("Disk Copier: Off")
   end
   
   if disk.isPresent("left") then
-    term.write("Master Copy: " .. masterLabel .. " (Present)")
     masterLabel = disk.getLabel("left")
     masterPath = disk.getMountPath("left")
+    print("Master Copy: " .. masterLabel .. " (Present)")
   else
-    term.write("Master Copy: Not Present. Insert master copy into left disk drive.")
+    print("Master Copy: Not Present. Insert master copy into left disk drive.")
     copied = false
   end
   
   if disk.isPresent("right") then
-    term.write("Target Disk: " .. masterLabel .. " (Present)")
+    targetLabel = disk.getLabel("right")
     targetPath = disk.getMountPath("right")
+    print("Target Disk: " .. targetLabel .. " (Present)")
   else
-    term.write("Target Disk: Not Present. Insert target disk into right disk drive.")
+    print("Target Disk: Not Present. Insert target disk into right disk drive.")
     copied = false
   end
   
-  if disk.isPresent("left") and disk.getMountPath("right") then
-    term.write("Not Ready")
-  elseif redstone.getInput("front") not true then
-    term.write("Ready")
-  elseif copied not true then
-    term.write("Coping... Do not remove target disk...")
+  if (not disk.isPresent("left")) and (not disk.getMountPath("right")) then
+    print("Not Ready")
+  elseif not redstone.getInput("front") then
+    print("Ready")
+  elseif not copied then
+    print("Coping... Do not remove target disk...")
 --    local targetFiles = fs.list(targetPath)
 --    for _, targetFile in ipairs(targetFiles) do
 --      targetFilePath = targetPath .. "/" .. targetFile
@@ -47,6 +48,6 @@ while true do
 --    end
     copied = true
   else
-    term.write("Copied! Remove target disk")
+    print("Copied! Remove target disk")
   end
 end
