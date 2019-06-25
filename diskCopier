@@ -32,21 +32,21 @@ while true do
   
   if not (masterPath and targetPath) then
     term.write("Not Ready")
-  elsif not (on) then
+  elseif not (on) then
     term.write("Ready")
-  elsif not copied then
+  elseif not copied then
     term.write("Coping... Do not remove target disk...")
-    local targetFiles = fs.list(targetPath)
-    for _, targetFile in ipairs(targetFiles) do
-      targetFilePath = targetPath .. "/" .. targetFile
-      fs.delete(targetFilePath
-    end
-    local masterFiles = fs.list(masterPath)
-    for _, masterFile in ipairs(masterFiles) do
-      masterFilePath = masterPath .. "/" .. masterFile
-      targetFilePath = targetPath .. "/" .. masterFile
-      fs.copy(masterFilePath, targetFilePath)
-    end
+--    local targetFiles = fs.list(targetPath)
+--    for _, targetFile in ipairs(targetFiles) do
+--      targetFilePath = targetPath .. "/" .. targetFile
+--      fs.delete(targetFilePath)
+--    end
+--    local masterFiles = fs.list(masterPath)
+--    for _, masterFile in ipairs(masterFiles) do
+--      masterFilePath = masterPath .. "/" .. masterFile
+--      targetFilePath = targetPath .. "/" .. masterFile
+--      fs.copy(masterFilePath, targetFilePath)
+--    end
     copied = true
   else
     term.write("Copied! Remove target disk")
